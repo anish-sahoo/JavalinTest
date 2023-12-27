@@ -15,6 +15,7 @@ dependencies {
     implementation("io.javalin:javalin:5.6.3")
     implementation("org.slf4j:slf4j-simple:2.0.6")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("org.mariadb.jdbc:mariadb-java-client:2.1.2")
 }
 
 tasks.test {
