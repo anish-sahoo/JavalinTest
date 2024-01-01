@@ -49,5 +49,18 @@ public class Main {
             System.out.println("[call] Request from "+ ctx.ip() +" took " + timeTaken + "ms");
             System.gc();
         });
+
+        app.post("/message", ctx -> {
+            System.out.println(
+                "Request from "+ ctx.ip() +" took " +
+                (System.currentTimeMillis() - (Long)ctx.attribute("startTime")) +
+                "ms"
+            );
+            String message = ctx.formParam("message");
+            Statement statement1 = connection.createStatement();
+            statement1.executeUpdate("INSERT INTO messages (message, created_at) VALUES ('"+ message +"', NOW());");
+            System.out.println(message);
+            ctx.result("Message received");    
+        });
     }
 }
